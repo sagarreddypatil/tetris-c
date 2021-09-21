@@ -8,13 +8,15 @@ const int SCREEN_HEIGHT = 720;
 const int GRID_WIDTH = 10;
 const int GRID_HEIGHT = 20;
 
-const int PIXELS_PER_GRID = SCREEN_HEIGHT / 72;
+const int PIXELS_PER_GRID = 0.9 * SCREEN_HEIGHT / GRID_HEIGHT;
 
 const int GRID_START_X = SCREEN_WIDTH - SCREEN_WIDTH / 2 - PIXELS_PER_GRID * GRID_WIDTH / 2;
 const int GRID_START_Y = SCREEN_HEIGHT - SCREEN_HEIGHT / 2 - PIXELS_PER_GRID * GRID_HEIGHT / 2;
 
 const int GRID_END_X = GRID_START_X + PIXELS_PER_GRID * GRID_WIDTH;
-const int GRID_END_Y = GRID_START_X + PIXELS_PER_GRID * GRID_HEIGHT;
+const int GRID_END_Y = GRID_START_Y + PIXELS_PER_GRID * GRID_HEIGHT;
+
+const SDL_Point GRID_POINTS[5] = {{GRID_START_X, GRID_START_Y}, {GRID_START_X, GRID_END_Y}, {GRID_END_X, GRID_END_Y}, {GRID_END_X, GRID_START_Y}, {GRID_START_X, GRID_START_Y}};
 
 int main()
 {
@@ -32,6 +34,7 @@ int main()
         printf("SDL Window and Renderer creation error: %s\n", SDL_GetError());
         exit(1);
     }
+    SDL_SetWindowTitle(window, "Tetris");
 
     // pieces on the game grid are color coded: one letter for each color: roygcbv
     char gameGrid[GRID_HEIGHT][GRID_WIDTH];
@@ -41,11 +44,12 @@ int main()
     SDL_Event e;
     while (!quit)
     {
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_SetRenderDrawColor(renderer, 40, 40, 40, 255);
         SDL_RenderClear(renderer);
 
-        SDL_SetRenderDrawColor(renderer, 40, 40, 40, 255);
-        SDL_RenderDrawLine(renderer, GRID_START_X, GRID_START_Y, GRID_END_X, GRID_START_Y);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+
+        SDL_RenderDrawLines(renderer, GRID_POINTS, 5);
 
         SDL_RenderPresent(renderer);
 
