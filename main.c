@@ -107,7 +107,10 @@ int main()
 
     for (int col = 0; col < GRID_WIDTH; col++)
     {
-        gameGrid[GRID_HEIGHT - 1][col] = 'g';
+        if (col % 2 == 0)
+        {
+            gameGrid[GRID_HEIGHT - 1][col] = 'g';
+        }
     }
 
     for (int col = 0; col < GRID_WIDTH; col++)
