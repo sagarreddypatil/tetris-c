@@ -78,13 +78,13 @@ int main()
     char gameGrid[GRID_HEIGHT][GRID_WIDTH];
     memset(gameGrid, 0, GRID_HEIGHT * GRID_WIDTH * sizeof(char));
 
-    for (int row = 0; row < GRID_HEIGHT; row++)
-    {
-        for (int col = 0; col < GRID_WIDTH; col++)
-        {
-            gameGrid[row][col] =
-        }
-    }
+    // for (int row = 0; row < GRID_HEIGHT; row++)
+    // {
+    //     for (int col = 0; col < GRID_WIDTH; col++)
+    //     {
+    //         gameGrid[row][col] =
+    //     }
+    // }
 
     bool quit = false;
     SDL_Event e;
